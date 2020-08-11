@@ -1,36 +1,74 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title>Lab - Multimedia Programming 2563 ITKMITL</title>
-	<link rel=stylesheet href="../src/reset.css">
-	<link rel=stylesheet href="lab.css">
-	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-</head>
-<body class="paper">
-	<div id="app">
-		<input type="number">
-		<div class="space"></div>
-		<h4>{{number}} x 1 = x</h4>
-		<h4>{{number}} x 2 = x</h4>
-		<h4>{{number}} x 3 = x</h4>
-		<h4>{{number}} x 4 = x</h4>
-		<h4>{{number}} x 5 = x</h4>
-		<h4>{{number}} x 6 = x</h4>
-		<h4>{{number}} x 7 = x</h4>
-		<h4>{{number}} x 8 = x</h4>
-		<h4>{{number}} x 9 = x</h4>
-		<h4>{{number}} x 10 = x</h4>
-		<h4>{{number}} x 11 = x</h4>
-		<h4>{{number}} x 12 = x</h4>
-	</div>
 
-	<script>
-		let app = new Vue({
-			el: '#app',
-			data: {
-				number: 2
-			}
-		})
-	</script>
+<head>
+    <title>Lab - Multimedia Programming 2563 ITKMITL</title>
+    <link rel=stylesheet href="../src/reset.css">
+    <link rel=stylesheet href="lab.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Sriracha&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
+    <style>
+        body {
+            font-family: 'Sriracha', cursive;
+        }
+    </style>
+</head>
+
+<body class="paper">
+    <div id="app">
+        <h3>สูตรคูณแบบจุกๆ</h3>
+        <div>
+            <div class="column is-one-quarter">
+                <p>แม่อะไรซิ</p><input type="number" v-model="num" class="input is-rounded ">
+            </div>
+            <div class="column is-one-quarter">
+                <p>กี่บรรทัดดีซิ</p><input type="number" v-model="row" class="input  is-rounded ">
+            </div>
+            <p>อันตะกี้สูตรคูณแม่ : {{b_num}}</p>
+        </div>
+        <div class="space">
+
+        </div>
+        <div id="result" class="column">
+            <h4 v-for="i in rw">{{num}} x {{i}} = {{num*i}}</h4>
+        </div>
+        <br>
+        <div>
+            <h5>ผลรวมของทุกตัวคือ : {{summary}}</h5>
+        </div>
+    </div>
+
+    <script>
+        let app = new Vue({
+                el: '#app',
+                data: {
+                    num: 2,
+                    row: 12,
+                    b_num: 1,
+                },
+                computed: {
+                    rw: function() {
+                        return parseInt(this.row)
+                    },
+
+                    summary: function() {
+                        let sum = 0
+                        for (var i = 0; i <= this.row; i++) {
+                            sum = sum + (parseInt(this.num) * i)
+                        }
+                        return sum
+                    }
+                },
+                watch: {
+                    num: function(a, b) {
+                        this.b_num = b
+                    }
+                }
+            }
+
+        )
+    </script>
 </body>
+
 </html>
