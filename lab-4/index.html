@@ -17,28 +17,25 @@
         </section>
         <section id="canvas_main">
             <main>
-                <a-dot></a-dot>
-                <a-dot></a-dot>
-                <a-dot></a-dot>
-                <a-dot></a-dot>
-                <a-dot></a-dot>
-                <a-dot style="--l:80%"></a-dot>
-                <a-dot data-pick="true"></a-dot>
-                <a-dot></a-dot>
-                <a-dot></a-dot>
+                <a-dot v-for="i in row*row":style="{
+                    '--row':row,
+                    '--h':h,
+                    '--l':l+'%'
+                }"
+                    :data-pick="i == pick"
+                    @click="check(i)"
+                ></a-dot>
             </main>
         </section>
         <section id="canvas_footer">
             <div>
                 {{score}} คะแนน
-
-
             </div>
         </section>
     </div>
 
     <script>
-        let picklight = "20%" //เลือกว่ารอบนี้ อันพิเศษจะมีความสว่าง 20%w
+        let picklight = "70%" //เลือกว่ารอบนี้ อันพิเศษจะมีความสว่าง 20%w
         function rand(start, stop) { //สร้างฟังก์ชัน random ไว้ใช้
             let shift = (stop - start) + 1
             return Math.floor(Math.random() * 100 % shift) + start
@@ -48,14 +45,37 @@
                 el: '#canvas',
                 data: {
                     row: 2, //จำนวนแถวที่จะมีในรอบนี้
-                    h: 330, // hue ในรอบนี้
+                    h: 240, // hue ในรอบนี้
                     time: 10, //เวลาเริ่มต้น
                     score: 0, //คะแนนเริ่มต้น
-                    pick: 1, //หมายเลขวงกลมที่จะสีแตกต่างจากก้อนอื่นๆ
-                    l: 30, //ความสว่างของสีทั่วไปในรอบนี้
+                    pick: 2, //หมายเลขวงกลมที่จะสีแตกต่างจากก้อนอื่นๆ
+                    l: 60, //ความสว่างของสีทั่วไปในรอบนี้
                 },
                 methods: {
+                    check: function(e){
+                        console.log(e)
+                        console.log(e.target)
+                        if(e == this.pick){
+                            console.log('Thats Damn Right')
+                            this.correct()
+                            this.score += 100
+                            this.time += 3
+                            this.row += 1
+                        }
+                        else{
+                            this.score -= 20
+                            this.time -= 5
+                        }
+                    },
+                    correct: function(e){
+                        this.pick = rand(1,this.row*this.row)
+                        this.h = rand(0, 360)
+                        this.picklight = rand(10,90)+'%';
+                        console.log('Correct!')
+                        document.querySelector('#canvas').style.setProperty('--picklight', picklight);
+                    },
 
+                    
                 }
             })
             //ทำให้แคนวาสมี --picklight ตามที่กำหนดไว้ข้างบนนี้
@@ -66,6 +86,9 @@
                 app.time--
             } else {
                 clearInterval(counter)
+                alert('หมดเวลาแล้วจ้า คุณได้คะแนนทั้งสิ้น :'+ app.score +' คะแนน')
+                app.score = 0;
+                location.reload();
             }
         }, 1000);
     </script>
