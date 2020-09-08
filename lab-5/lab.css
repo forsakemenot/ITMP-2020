@@ -28,8 +28,7 @@ body {
 }
 
 #canvas_main {
-    background-color: grey;
-    background-image: url('tile-rock.jpg');
+    background-color: black;
     background-size: 20%;
     height: 400px;
     opacity: .2;
@@ -55,7 +54,7 @@ main {
 div.box {
     width: var(--boxsize);
     height: var(--boxsize);
-    background-color: orange;
+    /* background-color: orange; */
     position: absolute;
     right: 0;
     bottom: 0;
@@ -77,123 +76,133 @@ div.box {
 }
 
 .box._toggle {
-    background-color: yellow;
-    transition: none;
-    opacity: .5;
+    background-color: black;
+    background-image: url('sai_pan.png');
+    background-size: cover;
+    transform: rotate(180deg);
+    text-shadow: 0 0 3px #FF0000;
 }
 
 .box._toggle[data-isrightarrow="0"] {
-    background-color: red;
+    background-color: black;
+    background-image: url('sai_pan.png');
+    background-size: cover;
+    transform: rotate(90deg);
+    text-shadow: 0 0 3px #FF0000;
 }
 
 .box._12 {
-    background-color: red;
+    background-image: url('deen_says_good.png');
+    background-size: cover;
+    background-color: black;
 }
 
 .box._16 {
-    background-color: yellow;
+    background-image: url('little_mouse.png');
+    background-size: cover;
+    background-color: black;
 }
 
 .box._path {
     background-color: black;
-    background-image: url('tile-wood.jpg');
+    background-image: url('sai_pan.png');
     background-size: cover;
     transform: rotate(0deg);
 }
 
-.box._path[data-pst="4"],
-.box._path[data-pst="5"],
+.box._path[data-pst="6"],
+.box._path[data-pst="13"] {
+    transform: rotate(180deg);
+}
+
 .box._path[data-pst="7"],
+.box._path[data-pst="8"] {
+    transform: rotate(270deg);
+}
+
+.box._path[data-pst="5"],
+.box._path[data-pst="4"],
 .box._path[data-pst="9"],
 .box._path[data-pst="11"] {
     transform: rotate(90deg);
 }
 
 .box._fruit {
-    background-color: yellow;
+    background-color: white;
     border-radius: 100%;
     border: 3px solid #fffc;
     transform: scale(.6);
+    background-image: url('becon.jpg');
 }
 
 .box._fruit[data-type="red"] {
-    background-color: red;
+    background-image: url('becon.png');
+    background-size: cover;
 }
 
 .box._fruit[data-type="yellow"] {
-    background-color: yellow;
+    background-image: url('veg.png');
+    background-size: cover;
 }
 
+
+}
 .box[data-pst="0"] {
     right: 0%;
     bottom: 0%;
 }
-
 .box[data-pst="1"] {
     right: 20%;
     bottom: 0%;
 }
-
 .box[data-pst="2"] {
     right: 40%;
     bottom: 0%;
 }
-
 .box[data-pst="3"] {
     right: 60%;
     bottom: 0%;
 }
-
 .box[data-pst="4"] {
     right: 80%;
     bottom: 0%;
 }
-
 .box[data-pst="5"] {
     right: 80%;
     bottom: 20%;
 }
-
 .box[data-pst="6"] {
     right: 80%;
     bottom: 40%;
 }
-
 .box[data-pst="7"] {
     right: 60%;
     bottom: 40%;
 }
-
 .box[data-pst="8"] {
     right: 60%;
     bottom: 20%;
 }
-
 .box[data-pst="9"] {
     right: 40%;
     bottom: 20%;
 }
-
 .box[data-pst="10"] {
     right: 40%;
     bottom: 40%;
 }
-
 .box[data-pst="11"] {
     right: 40%;
     bottom: 60%;
 }
-
 .box[data-pst="12"] {
     right: 40%;
     bottom: 80%;
 }
-
 .box[data-pst="13"] {
     right: 20%;
     bottom: 40%;
 }
-
 .box[data-pst="16"] {
     right: 0%;
     bottom: 40%;
